@@ -1,0 +1,23 @@
+language: python
+
+os:
+  - osx
+
+compiler:
+  - python
+
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update          ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install graphviz; fi
+  - brew uninstall --force --ignore-dependencies python
+  - brew install tcl-tk
+  - brew install python@2 --use-brewed-tk
+  - brew link python@2 --force
+
+script:
+  - pip2.7 install py2app
+  - pip2.7 install lxml
+  - pip2.7 install sklearn
+  - pip2.7 install numpy
+  - pip2.7 install scipy==0.14.0
+  - PYTHONPATH=/usr/local/lib/python2.7/site-packages /usr/local/bin/python2.7 build_scripts/setup_binary.py py2app
