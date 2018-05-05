@@ -6,8 +6,10 @@ setup_git() {
 }
 
 commit_website_files() {
+  cd dist
+  tar -cvzf AltAnalyze.app.tar.gz AltAnalyze.app
   git checkout -b osxapp
-  git add -f dist/AltAnalyze.app
+  git add -f dist/AltAnalyze.app.tar.gz
   git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
 }
 
