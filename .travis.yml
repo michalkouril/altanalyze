@@ -1,5 +1,12 @@
 os:
 - osx
+
+# safelist
+branches:
+  only:
+  - master
+  - stable
+  
 before_install:
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update          ; fi
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install graphviz; fi
@@ -13,10 +20,12 @@ script:
 - pip2.7 install sklearn
 - pip2.7 install numpy
 - pip2.7 install scipy==0.14.0
-- PYTHONPATH=/usr/local/lib/python2.7/site-packages /usr/local/bin/python2.7 build_scripts/setup_binary.py
+- PYTHONPATH=/usr/local/lib/python2.7/site-packages /usr/local/bin/pythonw2.7 build_scripts/setup_binary.py
   py2app
+  
 after_success:
 - "./push.sh"
+
 env:
   global:
     secure: QLC6AaJ9kCQKkSjse6c1C+NmTOSPVQdMnE8FAEM2k4+LTJ5eNP7D2+bM6Iew2qOC0knwE5Ekfjk43MQmW1Dl/YPb54CkG0tpDjslfMUs2t+lk/HdaPMnhOXSFFvJFMRtMhJFd9zgAUUoBkpgtbRz5YBpIZdBLJIW3fOR4LZgQtU1xS3HawU12F6ch/KI/tmFGM1z6fwCWhcCoEenD/4rLs4B/KVptg7UH5gY8Kx1So/TpWUL543i6MsV+Gtz5yaeDGvZbBRMPwvOSzgKuFvsPEJtpnYhellSrpocYFQLG5Urzli/p5iMsbGUuyAT96ZbVEb5hZtRJe4tGQG9lRizkTTUWr1j8UE9A7B/RYQLT1c3AWKQCZLYjOY4Ogh3k+9Svff5ZCPn7Pp2B2hgcZ4StZzQGYIezc1xCZG39SKaHC/PvQoPk/tVtTBP2ErODViqfhs7a2+UZRPzs8d6wREu0jQSnANIQT2p0QdsqQYpIKlf8rH/ZBtAS614TuZzGbjs+Lws5tpDKK2iNMUaakUFL09WQqy/nlQ+C6M8qUpQwZVAe/EKXVc4jlLXAxx+/oi5fuTnS79m7q9Cvuy72G67tdbpBKGsdv1F7eqWmjmOAsI456GIYr/QpUdx1cjTn48vo6fvczu7fbtObCnRBVOnr2nQ48gUdDfZmQVHUHCc51Y=
