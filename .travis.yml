@@ -14,6 +14,7 @@ before_install:
 - brew install tcl-tk
 - brew install python@2 --use-brewed-tk
 - brew link python@2 --force
+
 script:
 - pip2.7 install py2app
 - pip2.7 install lxml
