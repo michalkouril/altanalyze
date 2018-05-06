@@ -21,9 +21,15 @@ script:
 - pip2.7 install sklearn
 - pip2.7 install numpy
 - pip2.7 install scipy==0.14.0
+- pip2.7 install requests
+- sudo pip2 install tornado pytz pysam==0.13 xlrd pygments pyPdf rpy2==2.8.0 setuptools requests_toolbelt logging genapi
+- sudo pip2 install igraph certifi colorama pandas patsy simplejson statsmodels matplotlib==2.0.0 biopython sqlalchemy
+- sudo pip2 install synapseclient ordereddict nose pytest
 - PYTHONPATH=/usr/local/lib/python2.7/site-packages /usr/local/bin/pythonw2.7 build_scripts/setup_binary.py py2app
+# pip2 install py2app==0.10
 
 after_success:
+- echo "After_Success"
 - "./push.sh"
 
 env:
